@@ -13,17 +13,20 @@ export const useStore = create((set) => ({
   setAuthentication: (userData, authToken) => set(() => ({ currentUser: userData, isAuthenticated: true, authToken })),
 }));
 
-export const useAuthStore = create(
-  persist(
-    (set, get) => ({
-      authToken: null,
-      isAuthenticated: false,
-      currentUser: null,
-      setAuthentication: (userData, authToken) => set(() => ({ currentUser: userData, isAuthenticated: true, authToken })),
-    }),
-    {
-      name: 'gcloud-auth', // name of the item in the storage (must be unique)
-    },
-  ),
-)
+// export const useAuthStore = create(
+//   persist(
+//     (set, get) => ({
+//       authToken: null,
+//       isAuthenticated: false,
+//       currentUser: null,
+//       setAuthentication: (userData, authToken) => set(() => ({ currentUser: userData, isAuthenticated: true, authToken })),
+//     }),
+//     {
+//       name: 'gcloud-auth', // name of the item in the storage (must be unique)
+//     },
+//   ),
+// )
 
+export * from './stores/auth'
+export * from './stores/company'
+export * from './stores/layout'
