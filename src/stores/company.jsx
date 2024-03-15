@@ -5,11 +5,19 @@ export const useCompanyStore = create((set) => ({
   setCompanies: (companies) => set(() => ({ companies: companies })),
   addCompany: (company) => set((state) => ({ companies: [...state.companies, company] })),
   updateCompanyById: (company, id) => set((state) => {
-    let foundCompany = state.companies.find(x => x.id === id);
-    foundCompany = {
-        ...foundCompany,
+    let companies = [...state.companies];
+    let foundCompanyIndex = companies.findIndex(x => x.id == id);
+    companies[foundCompanyIndex] = {
         ...company,
-        id: foundCompany.id,
+        id: id,
+    }
+    return { companies: companies };
+  }),
+  deleteCompanyById: (id) => set((state) => {
+    let companies = [...state.companies];
+    let companyIndex = companies.findIndex(x => x.id === id);
+    if (companyIndex != -1) {
+        companies.splice(companyIndex, 1);
     }
     return { companies: companies };
   }),

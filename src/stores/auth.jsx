@@ -11,6 +11,7 @@ export const useAuthStore = create(
         currentUser: null,
         setAuthentication: (userData, authToken) => set(() => ({ currentUser: userData, isAuthenticated: true, authToken })),
         setRefreshToken: (accessToken, refreshToken) => set(() => ({ accessToken, refreshToken })),
+        logout: () => set(() => ({currentUser: null, isAuthenticated: false, authToken: null}))
       }),
       {
         name: 'gcloud-auth', // name of the item in the storage (must be unique)
